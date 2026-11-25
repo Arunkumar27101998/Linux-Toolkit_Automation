@@ -1,0 +1,79 @@
+mkdir -p ~/linux-automation-toolkit
+cd ~/linux-automation-toolkit
+============================================================
+mkdir -p scripts
+mkdir -p logs
+mkdir -p backups
+mkdir -p reports
+mkdir -p config
+==============================================================
+nano scripts/system_monitor.sh
+
+chmod +x scripts/system_monitor.sh
+
+./scripts/system_monitor.sh
+
+
+cat logs/system.log
+==================================================================
+
+nano scripts/disk_cleanup.sh
+
+find "$TARGET" -type f -mtime +7 -delete
+
+chmod +x scripts/disk_cleanup.sh
+
+./scripts/disk_cleanup.sh
+
+cat logs/cleanup.log
+======================================================================
+
+nano scripts/backup.sh
+chmod +x scripts/backup.sh
+
+./scripts/backup.sh
+ls -lh backups/
+===================================================================
+nano scripts/service_monitor.sh
+chmod +x scripts/service_monitor.sh
+
+./scripts/service_monitor.sh
+
+cat logs/service.log
+=============================================================
+nano scripts/user_audit.sh
+chmod +x scripts/user_audit.sh
+
+./scripts/user_audit.sh
+
+cat reports/user_report.txt
+=============================================================
+nano scripts/process_monitor.sh
+chmod +x scripts/process_monitor.sh
+
+./scripts/process_monitor.sh
+
+cat logs/process.log
+========================================================
+chmod +x main.sh
+
+./main.sh
+===========================================================
+crontab -e
+# System monitoring every 30 minutes
+*/30 * * * * /bin/bash /home/ubuntu/linux-automation-toolkit/scripts/system_monitor.sh
+
+# Backup every day at 1 AM
+0 1 * * * /bin/bash /home/ubuntu/linux-automation-toolkit/scripts/backup.sh
+
+# Service monitoring every 5 minutes
+*/5 * * * * /bin/bash /home/ubuntu/linux-automation-toolkit/scripts/service_monitor.sh
+
+# User audit every Sunday at 8 AM
+0 8 * * 0 /bin/bash /home/ubuntu/linux-automation-toolkit/scripts/user_audit.sh
+
+crontab -l
+
+sudo systemctl status cron
+
+===============================================================================
