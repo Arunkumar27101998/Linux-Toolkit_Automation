@@ -1,0 +1,15 @@
+linux-automation-toolkit/
+│
+├── scripts/
+│   ├── system_monitor.sh
+│   ├── disk_cleanup.sh
+│   ├── backup.sh
+│   ├── service_monitor.sh
+│   ├── user_audit.sh
+│   └── process_monitor.sh
+│
+├── logs/
+├── backups/
+├── reports/
+├── config/
+└── README.md
